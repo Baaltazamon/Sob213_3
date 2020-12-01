@@ -81,6 +81,68 @@ namespace Sob213_3
             db.SaveChanges();
             Update();
         }
-    
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            EMPLOYEE emp = dgEmployee.SelectedItem as EMPLOYEE;
+            if (emp == null)
+                return;
+            emp.FIRST_NAME = tbFN.Text;
+            emp.LAST_NAME = tbLN.Text;
+            emp.LOGIN = tbLog.Text;
+            emp.ASSIGNED_BRANCH_ID = (cbBranch.SelectedItem as BRANCH).BRANCH_ID;
+            emp.DEPT_ID = (cbDepartment.SelectedItem as DEPARTMENT).DEPT_ID;
+            emp.TITLE = cbTitle.Text;
+            if (cbSuperrior.SelectedIndex != -1)
+            {
+                emp.SUPERIOR_EMP_ID = (cbSuperrior.SelectedItem as EMPLOYEE).EMP_ID;
+            }
+            emp.START_DATE = DateTime.Parse(dpStart.Text);
+            if (dpEnd.Text != "")
+            {
+                emp.END_DATE = DateTime.Parse(dpEnd.Text);
+            }
+            db.SaveChanges();
+            Update();
+        }
+
+        private void dgEmployee_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            EMPLOYEE emp = dgEmployee.SelectedItem as EMPLOYEE;
+            if (emp == null)
+                return;
+            tbFN.Text = emp.FIRST_NAME;
+            tbLN.Text = emp.LAST_NAME;
+            tbLog.Text = emp.LOGIN;
+            cbBranch.SelectedItem = db.BRANCH.Where(c => c.BRANCH_ID == emp.ASSIGNED_BRANCH_ID).FirstOrDefault();
+            cbTitle.Text = emp.TITLE;
+            cbSuperrior.SelectedItem = (emp.SUPERIOR_EMP_ID == null) ? null : db.EMPLOYEE.Where(c => c.EMP_ID == emp.SUPERIOR_EMP_ID).FirstOrDefault();
+            cbDepartment.SelectedItem = db.DEPARTMENT.Where(c => c.DEPT_ID == emp.DEPT_ID).SingleOrDefault();
+            dpStart.Text = emp.START_DATE.ToString();
+            dpEnd.Text = emp.END_DATE.ToString();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            tbFN.Clear();
+            tbLN.Clear();
+            tbLog.Clear();
+            cbBranch.SelectedIndex = 0;
+            cbDepartment.SelectedIndex = 0;
+            cbSuperrior.SelectedIndex = -1;
+            cbTitle.SelectedIndex = 0;
+            dpStart.SelectedDate = DateTime.Now;
+            dpEnd.SelectedDate = DateTime.Now;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            EMPLOYEE emp = dgEmployee.SelectedItem as EMPLOYEE;
+            if (emp == null)
+                return;
+            db.EMPLOYEE.Remove(emp);
+            db.SaveChanges();
+            Update();
+        }
     }
 }

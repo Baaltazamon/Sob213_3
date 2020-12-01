@@ -19,9 +19,9 @@
             </Button>
         </Grid>
         <Label x:Name="lbWelcome" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <DataGrid x:Name="dgEmployee" Margin="0,35,0,142" AutoGenerateColumns="False">
+        <DataGrid x:Name="dgEmployee" Margin="0,35,0,142" AutoGenerateColumns="False" SelectedCellsChanged="dgEmployee_SelectedCellsChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата увольнения" Binding="{Binding END_DATE}" Width="1*"/>
+                <DataGridTextColumn Header="Дата увольнения" Binding="{Binding END_DATE, StringFormat=\{0:d\}}" Width="1*"/>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FIRST_NAME}" Width="1*"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LAST_NAME}" Width="1*"/>
                 <DataGridTextColumn Header="Дата устройства на работу" Binding="{Binding START_DATE, StringFormat=\{0:d\}}" Width="1*"/>
@@ -75,7 +75,7 @@
                         <TextBlock Text="{Binding ADDRESS}" FontSize="8"/>
                     </StackPanel>
                 </DataTemplate>
-                
+
             </ComboBox.ItemTemplate>
         </ComboBox>
         <ComboBox x:Name="cbDepartment" DisplayMemberPath="NAME" HorizontalAlignment="Right" Margin="0,0,10,94" VerticalAlignment="Bottom" Width="120" SelectedIndex="0"/>
@@ -90,12 +90,15 @@
                         <TextBlock Text="{Binding TITLE}" FontSize="8"/>
                     </StackPanel>
                 </DataTemplate>
-                
+
             </ComboBox.ItemTemplate>
         </ComboBox>
         <DatePicker x:Name="dpStart" HorizontalAlignment="Right" Margin="0,0,151,49" VerticalAlignment="Bottom" Width="120"/>
         <DatePicker x:Name="dpEnd" HorizontalAlignment="Right" Margin="0,0,10,49" VerticalAlignment="Bottom" Width="120"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="662,412,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_3"/>
+        <Button Content="Добавить" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_3"/>
+        <Button Content="Сохранить" HorizontalAlignment="Right" Margin="0,0,151,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_4"/>
+        <Button Content="Очистить" HorizontalAlignment="Left" Margin="22,0,0,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_5"/>
+        <Button Content="Удалить" HorizontalAlignment="Center" Margin="366,0,306,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_6"/>
 
     </Grid>
 </Window>
