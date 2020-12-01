@@ -1,0 +1,27 @@
+﻿<Window x:Class="Sob213_3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sob213_3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="370" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Height="35" Background="#FF8D10B2" Margin="0,0,0,415" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" HorizontalAlignment="Right" Width="370">
+            <Button Height="35" Width="35" HorizontalAlignment="Right" Background="Transparent" BorderBrush="{x:Null}" Margin="335,0,0,0" Click="Button_Click">
+                <Image Source="Image/icons8_cancel.ico"/>
+            </Button>
+            <Button Height="35" Width="35" HorizontalAlignment="Left" Background="Transparent" BorderBrush="{x:Null}" Margin="-70,0,0,0" Click="Button_Click_1">
+                <Image Source="Image/icons8_minimize_window_1.ico"/>
+            </Button>
+        </StackPanel>
+        <TextBox x:Name="tbLogin" HorizontalAlignment="Left" Height="23" Margin="122,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Margin="122,209,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Button HorizontalAlignment="Left" Margin="122,266,0,0" VerticalAlignment="Top" Width="120" Height="34" Background="#FF9A96EA" Click="Button_Click_2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Image/icons8_sign_out.ico" Height="27" Width="43"/>
+                <Label Content="Sign up"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
