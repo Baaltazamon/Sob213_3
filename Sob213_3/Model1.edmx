@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище sob213Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="sob213Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACC_TRANSACTION">
           <Key>
             <PropertyRef Name="TXN_ID" />
@@ -88,6 +88,7 @@
           <Property Name="SUPERIOR_EMP_ID" Type="int" />
           <Property Name="LOGIN" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PASSWORD" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="INDIVIDUAL">
           <Key>
@@ -295,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище sob213ModelContainer">
+        <EntityContainer Name="sob213ModelStoreContainer">
           <EntitySet Name="ACC_TRANSACTION" EntityType="Self.ACC_TRANSACTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BRANCH" EntityType="Self.BRANCH" Schema="dbo" store:Type="Tables" />
@@ -364,7 +365,8 @@
             <End Role="PRODUCT" EntitySet="PRODUCT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sob213Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -374,8 +376,8 @@
           </Key>
           <Property Name="TXN_ID" Type="Decimal" Precision="19" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AMOUNT" Type="Double" Nullable="false" />
-          <Property Name="FUNDS_AVAIL_DATE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TXN_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FUNDS_AVAIL_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="TXN_DATE" Type="DateTime" Nullable="false" />
           <Property Name="TXN_TYPE_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ACCOUNT_ID" Type="Int32" />
           <Property Name="EXECUTION_BRANCH_ID" Type="Int32" />
@@ -390,9 +392,9 @@
           </Key>
           <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AVAIL_BALANCE" Type="Double" />
-          <Property Name="CLOSE_DATE" Type="DateTime" Precision="3" />
-          <Property Name="LAST_ACTIVITY_DATE" Type="DateTime" Precision="3" />
-          <Property Name="OPEN_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CLOSE_DATE" Type="DateTime" />
+          <Property Name="LAST_ACTIVITY_DATE" Type="DateTime" />
+          <Property Name="OPEN_DATE" Type="DateTime" Nullable="false" />
           <Property Name="PENDING_BALANCE" Type="Double" />
           <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CUST_ID" Type="Int32" />
@@ -423,7 +425,7 @@
           <Key>
             <PropertyRef Name="CUST_ID" />
           </Key>
-          <Property Name="INCORP_DATE" Type="DateTime" Precision="3" />
+          <Property Name="INCORP_DATE" Type="DateTime" />
           <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="STATE_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CUST_ID" Type="Int32" Nullable="false" />
@@ -458,16 +460,17 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="END_DATE" Type="DateTime" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" />
           <Property Name="TITLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ASSIGNED_BRANCH_ID" Type="Int32" />
           <Property Name="DEPT_ID" Type="Int32" />
           <Property Name="SUPERIOR_EMP_ID" Type="Int32" />
           <Property Name="LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ACC_TRANSACTION" Relationship="Self.ACC_TRANSACTION_EMPLOYEE_FK" FromRole="EMPLOYEE" ToRole="ACC_TRANSACTION" />
           <NavigationProperty Name="ACCOUNT" Relationship="Self.ACCOUNT_EMPLOYEE_FK" FromRole="EMPLOYEE" ToRole="ACCOUNT" />
           <NavigationProperty Name="BRANCH" Relationship="Self.EMPLOYEE_BRANCH_FK" FromRole="EMPLOYEE" ToRole="BRANCH" />
@@ -479,7 +482,7 @@
           <Key>
             <PropertyRef Name="CUST_ID" />
           </Key>
-          <Property Name="BIRTH_DATE" Type="DateTime" Precision="3" />
+          <Property Name="BIRTH_DATE" Type="DateTime" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CUST_ID" Type="Int32" Nullable="false" />
@@ -490,10 +493,10 @@
             <PropertyRef Name="OFFICER_ID" />
           </Key>
           <Property Name="OFFICER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="END_DATE" Type="DateTime" Precision="3" />
+          <Property Name="END_DATE" Type="DateTime" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" />
           <Property Name="TITLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CUST_ID" Type="Int32" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.OFFICER_CUSTOMER_FK" FromRole="OFFICER" ToRole="CUSTOMER" />
@@ -503,8 +506,8 @@
             <PropertyRef Name="PRODUCT_CD" />
           </Key>
           <Property Name="PRODUCT_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DATE_OFFERED" Type="DateTime" Precision="3" />
-          <Property Name="DATE_RETIRED" Type="DateTime" Precision="3" />
+          <Property Name="DATE_OFFERED" Type="DateTime" />
+          <Property Name="DATE_RETIRED" Type="DateTime" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRODUCT_TYPE_CD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ACCOUNT" Relationship="Self.ACCOUNT_PRODUCT_FK" FromRole="PRODUCT" ToRole="ACCOUNT" />
@@ -760,7 +763,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище sob213ModelContainer" CdmEntityContainer="sob213Entities">
+        <EntityContainerMapping StorageEntityContainer="sob213ModelStoreContainer" CdmEntityContainer="sob213Entities">
           <EntitySetMapping Name="ACC_TRANSACTION">
             <EntityTypeMapping TypeName="sob213Model.ACC_TRANSACTION">
               <MappingFragment StoreEntitySet="ACC_TRANSACTION">
@@ -849,6 +852,7 @@
                 <ScalarProperty Name="SUPERIOR_EMP_ID" ColumnName="SUPERIOR_EMP_ID" />
                 <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
                 <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -911,7 +915,6 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

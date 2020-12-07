@@ -75,7 +75,8 @@ namespace Sob213_3
                 TITLE = cbTitle.Text,
                 LOGIN = tbLog.Text,
                 START_DATE = Convert.ToDateTime(dpStart.Text),
-                PASSWORD = "qwe"
+                PASSWORD = "qwe",
+                EMAIL = tbMail.Text
             };
             db.EMPLOYEE.Add(emp);
             db.SaveChanges();
@@ -93,6 +94,7 @@ namespace Sob213_3
             emp.ASSIGNED_BRANCH_ID = (cbBranch.SelectedItem as BRANCH).BRANCH_ID;
             emp.DEPT_ID = (cbDepartment.SelectedItem as DEPARTMENT).DEPT_ID;
             emp.TITLE = cbTitle.Text;
+            emp.EMAIL = tbMail.Text;
             if (cbSuperrior.SelectedIndex != -1)
             {
                 emp.SUPERIOR_EMP_ID = (cbSuperrior.SelectedItem as EMPLOYEE).EMP_ID;
@@ -120,6 +122,7 @@ namespace Sob213_3
             cbDepartment.SelectedItem = db.DEPARTMENT.Where(c => c.DEPT_ID == emp.DEPT_ID).SingleOrDefault();
             dpStart.Text = emp.START_DATE.ToString();
             dpEnd.Text = emp.END_DATE.ToString();
+            tbMail.Text = emp.EMAIL;
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
@@ -133,6 +136,8 @@ namespace Sob213_3
             cbTitle.SelectedIndex = 0;
             dpStart.SelectedDate = DateTime.Now;
             dpEnd.SelectedDate = DateTime.Now;
+            tbMail.Clear();
+            
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)

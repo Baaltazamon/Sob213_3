@@ -52,6 +52,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Логин" Binding="{Binding LOGIN}" Width="1*"/>
+                <DataGridTextColumn Header="Почта" Binding="{Binding EMAIL}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="tbFN" HorizontalAlignment="Left" Height="23" Margin="22,0,0,94" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
@@ -99,6 +100,7 @@
         <Button Content="Сохранить" HorizontalAlignment="Right" Margin="0,0,151,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_4"/>
         <Button Content="Очистить" HorizontalAlignment="Left" Margin="22,0,0,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_5"/>
         <Button Content="Удалить" HorizontalAlignment="Center" Margin="366,0,306,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_6"/>
+        <TextBox x:Name="tbMail" HorizontalAlignment="Left" Height="23" Margin="164,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
 
     </Grid>
 </Window>

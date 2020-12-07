@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9ca1da90c42f4e1085c6d94356420cda" Name="Diagram1">
-        <EntityTypeShape EntityType="sob213Model.ACC_TRANSACTION" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.ACCOUNT" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.BRANCH" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.BUSINESS" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.CUSTOMER" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.DEPARTMENT" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+      <Diagram DiagramId="6043a583112b4982abd4ff60acd46849" Name="Diagram1">
+        <EntityTypeShape EntityType="sob213Model.ACC_TRANSACTION" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.ACCOUNT" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.BRANCH" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.BUSINESS" Width="1.5" PointX="6" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.CUSTOMER" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.DEPARTMENT" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="sob213Model.EMPLOYEE" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.INDIVIDUAL" Width="1.5" PointX="6" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.OFFICER" Width="1.5" PointX="6" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.PRODUCT" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sob213Model.PRODUCT_TYPE" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.INDIVIDUAL" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.OFFICER" Width="1.5" PointX="6" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.PRODUCT" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sob213Model.PRODUCT_TYPE" Width="1.5" PointX="1.5" PointY="15.25" IsExpanded="true" />
         <AssociationConnector Association="sob213Model.ACC_TRANSACTION_ACCOUNT_FK" ManuallyRouted="false" />
         <AssociationConnector Association="sob213Model.ACC_TRANSACTION_BRANCH_FK" ManuallyRouted="false" />
         <AssociationConnector Association="sob213Model.ACC_TRANSACTION_EMPLOYEE_FK" ManuallyRouted="false" />

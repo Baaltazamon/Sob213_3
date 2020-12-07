@@ -50,11 +50,26 @@ namespace Sob213_3
                 MessageBox.Show("Такой комбинации логин/пароль не существует", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (emp.END_DATE != null)
+            {
+                MessageBox.Show("Поздравляю, Вас уволили!", "Давай досвидания!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (emp.PASSWORD == "qwe")
+            {
+                ChangePassword ChP = new ChangePassword(emp);
+                ChP.ShowDialog();
+            }
             if (emp.TITLE == "Operations Manager")
             {
                 OpManager op = new OpManager(emp.LOGIN, emp.LAST_NAME);
                 op.Show();
                 Close();
+            }
+            else 
+            {
+                EmployeWindow em = new EmployeWindow();
+                em.Show();
             }
         }
     }

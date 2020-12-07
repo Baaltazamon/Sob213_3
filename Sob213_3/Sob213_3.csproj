@@ -64,6 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +92,9 @@
     <Compile Include="BUSINESS.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CUSTOMER.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -92,6 +103,9 @@
     </Compile>
     <Compile Include="EMPLOYEE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeWindow.xaml.cs">
+      <DependentUpon>EmployeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="INDIVIDUAL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
