@@ -27,6 +27,7 @@ namespace Sob213_3
             dpStart.DisplayDateEnd = DateTime.Now;
             dpEnd.DisplayDateStart = DateTime.Now;
             Update();
+            btReq.Content = $"Заявок ({db.REQUEST.Count()})";
         }
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -147,6 +148,13 @@ namespace Sob213_3
                 return;
             db.EMPLOYEE.Remove(emp);
             db.SaveChanges();
+            Update();
+        }
+
+        private void btReq_Click(object sender, RoutedEventArgs e)
+        {
+            Requests r = new Requests();
+            r.ShowDialog();
             Update();
         }
     }

@@ -36,5 +36,6 @@ namespace Sob213_3
         public virtual DbSet<OFFICER> OFFICER { get; set; }
         public virtual DbSet<PRODUCT> PRODUCT { get; set; }
         public virtual DbSet<PRODUCT_TYPE> PRODUCT_TYPE { get; set; }
+        public virtual DbSet<REQUEST> REQUEST { get; set; }
     }
 }

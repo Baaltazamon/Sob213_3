@@ -128,6 +128,14 @@
           <Property Name="PRODUCT_TYPE_CD" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NAME" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMP_ID" Type="int" Nullable="false" />
+          <Property Name="NEW_EMAIL" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="ACC_TRANSACTION_ACCOUNT_FK">
           <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
           <End Role="ACC_TRANSACTION" Type="Self.ACC_TRANSACTION" Multiplicity="*" />
@@ -257,6 +265,18 @@
             </Principal>
             <Dependent Role="EMPLOYEE1">
               <PropertyRef Name="SUPERIOR_EMP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUEST_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="EMP_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -308,6 +328,7 @@
           <EntitySet Name="OFFICER" EntityType="Self.OFFICER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT_TYPE" EntityType="Self.PRODUCT_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REQUEST" EntityType="Self.REQUEST" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ACC_TRANSACTION_ACCOUNT_FK" Association="Self.ACC_TRANSACTION_ACCOUNT_FK">
             <End Role="ACCOUNT" EntitySet="ACCOUNT" />
             <End Role="ACC_TRANSACTION" EntitySet="ACC_TRANSACTION" />
@@ -352,6 +373,10 @@
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
             <End Role="EMPLOYEE1" EntitySet="EMPLOYEE" />
           </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_EMPLOYEE" Association="Self.FK_REQUEST_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
+          </AssociationSet>
           <AssociationSet Name="INDIVIDUAL_CUSTOMER_FK" Association="Self.INDIVIDUAL_CUSTOMER_FK">
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
             <End Role="INDIVIDUAL" EntitySet="INDIVIDUAL" />
@@ -376,8 +401,8 @@
           </Key>
           <Property Name="TXN_ID" Type="Decimal" Precision="19" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AMOUNT" Type="Double" Nullable="false" />
-          <Property Name="FUNDS_AVAIL_DATE" Type="DateTime" Nullable="false" />
-          <Property Name="TXN_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="FUNDS_AVAIL_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TXN_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TXN_TYPE_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ACCOUNT_ID" Type="Int32" />
           <Property Name="EXECUTION_BRANCH_ID" Type="Int32" />
@@ -392,9 +417,9 @@
           </Key>
           <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AVAIL_BALANCE" Type="Double" />
-          <Property Name="CLOSE_DATE" Type="DateTime" />
-          <Property Name="LAST_ACTIVITY_DATE" Type="DateTime" />
-          <Property Name="OPEN_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="CLOSE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_ACTIVITY_DATE" Type="DateTime" Precision="3" />
+          <Property Name="OPEN_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PENDING_BALANCE" Type="Double" />
           <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CUST_ID" Type="Int32" />
@@ -425,7 +450,7 @@
           <Key>
             <PropertyRef Name="CUST_ID" />
           </Key>
-          <Property Name="INCORP_DATE" Type="DateTime" />
+          <Property Name="INCORP_DATE" Type="DateTime" Precision="3" />
           <Property Name="NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="STATE_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CUST_ID" Type="Int32" Nullable="false" />
@@ -460,10 +485,10 @@
             <PropertyRef Name="EMP_ID" />
           </Key>
           <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="END_DATE" Type="DateTime" />
+          <Property Name="END_DATE" Type="DateTime" Precision="3" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="START_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TITLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ASSIGNED_BRANCH_ID" Type="Int32" />
           <Property Name="DEPT_ID" Type="Int32" />
@@ -477,12 +502,13 @@
           <NavigationProperty Name="DEPARTMENT" Relationship="Self.EMPLOYEE_DEPARTMENT_FK" FromRole="EMPLOYEE" ToRole="DEPARTMENT" />
           <NavigationProperty Name="EMPLOYEE1" Relationship="Self.EMPLOYEE_EMPLOYEE_FK" FromRole="EMPLOYEE" ToRole="EMPLOYEE1" />
           <NavigationProperty Name="EMPLOYEE2" Relationship="Self.EMPLOYEE_EMPLOYEE_FK" FromRole="EMPLOYEE1" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK_REQUEST_EMPLOYEE" FromRole="EMPLOYEE" ToRole="REQUEST" />
         </EntityType>
         <EntityType Name="INDIVIDUAL">
           <Key>
             <PropertyRef Name="CUST_ID" />
           </Key>
-          <Property Name="BIRTH_DATE" Type="DateTime" />
+          <Property Name="BIRTH_DATE" Type="DateTime" Precision="3" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CUST_ID" Type="Int32" Nullable="false" />
@@ -493,10 +519,10 @@
             <PropertyRef Name="OFFICER_ID" />
           </Key>
           <Property Name="OFFICER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="END_DATE" Type="DateTime" />
+          <Property Name="END_DATE" Type="DateTime" Precision="3" />
           <Property Name="FIRST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LAST_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="START_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TITLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CUST_ID" Type="Int32" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.OFFICER_CUSTOMER_FK" FromRole="OFFICER" ToRole="CUSTOMER" />
@@ -506,8 +532,8 @@
             <PropertyRef Name="PRODUCT_CD" />
           </Key>
           <Property Name="PRODUCT_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DATE_OFFERED" Type="DateTime" />
-          <Property Name="DATE_RETIRED" Type="DateTime" />
+          <Property Name="DATE_OFFERED" Type="DateTime" Precision="3" />
+          <Property Name="DATE_RETIRED" Type="DateTime" Precision="3" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRODUCT_TYPE_CD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ACCOUNT" Relationship="Self.ACCOUNT_PRODUCT_FK" FromRole="PRODUCT" ToRole="ACCOUNT" />
@@ -520,6 +546,15 @@
           <Property Name="PRODUCT_TYPE_CD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_PRODUCT_TYPE_FK" FromRole="PRODUCT_TYPE" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMP_ID" Type="Int32" Nullable="false" />
+          <Property Name="NEW_EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_REQUEST_EMPLOYEE" FromRole="REQUEST" ToRole="EMPLOYEE" />
         </EntityType>
         <Association Name="ACC_TRANSACTION_ACCOUNT_FK">
           <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
@@ -677,6 +712,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_REQUEST_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMP_ID" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="EMP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="PRODUCT_PRODUCT_TYPE_FK">
           <End Role="PRODUCT_TYPE" Type="Self.PRODUCT_TYPE" Multiplicity="0..1" />
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
@@ -701,6 +748,7 @@
           <EntitySet Name="OFFICER" EntityType="Self.OFFICER" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
           <EntitySet Name="PRODUCT_TYPE" EntityType="Self.PRODUCT_TYPE" />
+          <EntitySet Name="REQUEST" EntityType="Self.REQUEST" />
           <AssociationSet Name="ACC_TRANSACTION_ACCOUNT_FK" Association="Self.ACC_TRANSACTION_ACCOUNT_FK">
             <End Role="ACCOUNT" EntitySet="ACCOUNT" />
             <End Role="ACC_TRANSACTION" EntitySet="ACC_TRANSACTION" />
@@ -752,6 +800,10 @@
           <AssociationSet Name="EMPLOYEE_EMPLOYEE_FK" Association="Self.EMPLOYEE_EMPLOYEE_FK">
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
             <End Role="EMPLOYEE1" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_EMPLOYEE" Association="Self.FK_REQUEST_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
           </AssociationSet>
           <AssociationSet Name="PRODUCT_PRODUCT_TYPE_FK" Association="Self.PRODUCT_PRODUCT_TYPE_FK">
             <End Role="PRODUCT_TYPE" EntitySet="PRODUCT_TYPE" />
@@ -898,6 +950,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="REQUEST">
+            <EntityTypeMapping TypeName="sob213Model.REQUEST">
+              <MappingFragment StoreEntitySet="REQUEST">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                <ScalarProperty Name="NEW_EMAIL" ColumnName="NEW_EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -915,6 +976,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

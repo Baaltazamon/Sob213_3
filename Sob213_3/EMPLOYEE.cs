@@ -20,6 +20,7 @@ namespace Sob213_3
             this.ACC_TRANSACTION = new HashSet<ACC_TRANSACTION>();
             this.ACCOUNT = new HashSet<ACCOUNT>();
             this.EMPLOYEE1 = new HashSet<EMPLOYEE>();
+            this.REQUEST = new HashSet<REQUEST>();
         }
     
         public int EMP_ID { get; set; }
@@ -44,5 +45,7 @@ namespace Sob213_3
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLOYEE> EMPLOYEE1 { get; set; }
         public virtual EMPLOYEE EMPLOYEE2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<REQUEST> REQUEST { get; set; }
     }
 }

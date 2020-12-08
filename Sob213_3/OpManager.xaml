@@ -101,6 +101,7 @@
         <Button Content="Очистить" HorizontalAlignment="Left" Margin="22,0,0,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_5"/>
         <Button Content="Удалить" HorizontalAlignment="Center" Margin="366,0,306,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_6"/>
         <TextBox x:Name="tbMail" HorizontalAlignment="Left" Height="23" Margin="164,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <Button x:Name="btReq" Content="" HorizontalAlignment="Right" Margin="0,0,10,120" VerticalAlignment="Bottom" Width="120" Click="btReq_Click"/>
 
     </Grid>
 </Window>

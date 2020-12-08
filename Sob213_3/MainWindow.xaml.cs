@@ -68,7 +68,7 @@ namespace Sob213_3
             }
             else 
             {
-                EmployeWindow em = new EmployeWindow();
+                EmployeWindow em = new EmployeWindow(emp);
                 em.Show();
             }
         }

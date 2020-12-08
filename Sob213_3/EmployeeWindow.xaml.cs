@@ -17,26 +17,11 @@ namespace Sob213_3
     /// <summary>
     /// Interaction logic for EmployeWindow.xaml
     /// </summary>
-    public partial class EmployeWindow : Window
+    public partial class EmployeeWindow : Window
     {
-        
-        sob213Entities db = new sob213Entities();
-        EMPLOYEE EMP;
-        public EmployeWindow(EMPLOYEE emp)
+        public EmployeeWindow()
         {
             InitializeComponent();
-            this.EMP = emp;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            REQUEST req = new REQUEST
-            {
-                EMP_ID = EMP.EMP_ID,
-                NEW_EMAIL = tbNewEMail.Text
-            };
-            db.REQUEST.Add(req);
-            db.SaveChanges();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Sob213_3.EmployeWindow"
+﻿<Window x:Class="Sob213_3.EmployeeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="EmployeWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="tbNewEMail" HorizontalAlignment="Left" Height="22" Margin="29,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Оставить заявку" HorizontalAlignment="Left" Margin="29,87,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
-
+        
     </Grid>
 </Window>
