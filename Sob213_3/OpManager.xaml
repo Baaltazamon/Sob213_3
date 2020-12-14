@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Sob213_3"
         mc:Ignorable="d"
         Title="OpManager" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
@@ -55,10 +56,10 @@
                 <DataGridTextColumn Header="Почта" Binding="{Binding EMAIL}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="tbFN" HorizontalAlignment="Left" Height="23" Margin="22,0,0,94" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
-        <TextBox x:Name="tbLN" HorizontalAlignment="Left" Height="23" Margin="164,0,0,94" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
-        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Height="23" Margin="22,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
-        <ComboBox x:Name="cbTitle" HorizontalAlignment="Center" Margin="366,0,306,94" VerticalAlignment="Bottom" Width="120" SelectedIndex="0">
+        <TextBox x:Name="tbFN" materialDesign:HintAssist.Hint="Имя" HorizontalAlignment="Left" Height="23" Margin="22,0,0,94" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox x:Name="tbLN" materialDesign:HintAssist.Hint="Фамилия" HorizontalAlignment="Left" Height="23" Margin="164,0,0,94" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox x:Name="tbLog" materialDesign:HintAssist.Hint="Логин" HorizontalAlignment="Left" Height="23" Margin="22,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <ComboBox x:Name="cbTitle"  HorizontalAlignment="Center" Margin="366,0,306,94" VerticalAlignment="Bottom" Width="120" SelectedIndex="0">
             <ComboBoxItem Content="President"/>
             <ComboBoxItem Content="Vice President"/>
             <ComboBoxItem Content="Treasurer"/>
@@ -100,7 +101,7 @@
         <Button Content="Сохранить" HorizontalAlignment="Right" Margin="0,0,151,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_4"/>
         <Button Content="Очистить" HorizontalAlignment="Left" Margin="22,0,0,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_5"/>
         <Button Content="Удалить" HorizontalAlignment="Center" Margin="366,0,306,10" VerticalAlignment="Bottom" Width="120" Click="Button_Click_6"/>
-        <TextBox x:Name="tbMail" HorizontalAlignment="Left" Height="23" Margin="164,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox x:Name="tbMail" materialDesign:HintAssist.Hint="Почта" HorizontalAlignment="Left" Height="23" Margin="164,0,0,47" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
         <Button x:Name="btReq" Content="" HorizontalAlignment="Right" Margin="0,0,10,120" VerticalAlignment="Bottom" Width="120" Click="btReq_Click"/>
 
     </Grid>
